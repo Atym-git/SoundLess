@@ -35,7 +35,7 @@ public class SoundPlayer : MonoBehaviour
         //Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * (maxVolume - zeroVolume) / 4f + maxVolume;
 
         float volume = Mathf.Log(Mathf.Clamp(value, 0.0001f, 1f)) * (maxVolume - zeroVolume) / 4f + maxVolume;
-        mainMixer.SetFloat("MasterVolume", volume);
+        mainMixer.SetFloat("MusicVolume", volume);
     }
 
     public void PlayClashSound()

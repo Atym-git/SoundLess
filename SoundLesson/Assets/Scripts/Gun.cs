@@ -13,6 +13,8 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private PlayerMovement playerScript;
 
+    [SerializeField] private Pause pause;
+
     private void Update()
     {
         if (Input.GetKeyDown(shootKeyCode) || Input.GetMouseButtonDown(0))
@@ -23,13 +25,18 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
-        if (playerScript.IsGunLookingRight)
+        if (!pause.isGamePaused)
         {
-            Instantiate(_bulletPrefab, _rightBulletRoot.position, _rightBulletRoot.transform.rotation);
-        }
-        else
-        {
-            Instantiate(_bulletPrefab, _leftBulletRoot.position, _leftBulletRoot.transform.rotation);
+            if (playerScript.IsGunLookingRight)
+            {
+                Instantiate(_bulletPrefab, _rightBulletRoot.position, _rightBulletRoot.transform.rotation);
+                shootSource.panStereo = 1;
+            }
+            else
+            {
+                Instantiate(_bulletPrefab, _leftBulletRoot.position, _leftBulletRoot.transform.rotation);
+                shootSource.panStereo = -1;
+            }
         }
         shootSource.Play();
     }
