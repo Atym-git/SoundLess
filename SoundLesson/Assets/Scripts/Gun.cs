@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -8,7 +5,6 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _rightBulletRoot;
     [SerializeField] private Transform _leftBulletRoot;
-    [SerializeField] private KeyCode shootKeyCode;
     [SerializeField] private AudioSource shootSource;
 
     [SerializeField] private PlayerMovement playerScript;
@@ -17,7 +13,7 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(shootKeyCode) || Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }

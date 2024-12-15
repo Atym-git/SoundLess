@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,18 +18,28 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!pause.isGamePaused)
         {
+            playerSr.enabled = true;
             float movement = Input.GetAxis("Horizontal");
             playerRb2D.velocity = new Vector2(movement * _movementSpeed, 0);
-            if (movement != 0 && movement < 0)
-            {
-                IsGunLookingRight = false;
-                playerSr.flipX = true;
-            }
-            else if (movement != 0 && movement > 0)
-            {
-                IsGunLookingRight = true;
-                playerSr.flipX = false;
-            }
+            FlipGun(movement);
+        }
+        else
+        {
+            playerSr.enabled = false;
+        }
+    }
+
+    private void FlipGun(float movement)
+    {
+        if (movement != 0 && movement < 0)
+        {
+            IsGunLookingRight = false;
+            playerSr.flipX = true;
+        }
+        else if (movement != 0 && movement > 0)
+        {
+            IsGunLookingRight = true;
+            playerSr.flipX = false;
         }
     }
 }
