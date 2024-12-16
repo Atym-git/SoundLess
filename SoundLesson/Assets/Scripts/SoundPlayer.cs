@@ -35,27 +35,29 @@ public class SoundPlayer : MonoBehaviour
 
     private void GetMusicSliderValue()
     {
-        musicSliderValue = PlayerPrefs.GetFloat("MusicVolume", musicVolumeSlider.value);
+        //musicSliderValue = PlayerPrefs.GetFloat("MusicVolume", musicVolumeSlider.value);
+        musicSliderValue = musicVolumeSlider.value;
         Debug.Log(musicSliderValue);
     }
     private void GetVFXSliderValue()
     {
-        VFXSliderValue = PlayerPrefs.GetFloat("VFXVolume", VFXVolumeSlider.value);
-        Debug.Log(VFXVolumeSlider.value);
+        //VFXSliderValue = PlayerPrefs.GetFloat("VFXVolume", VFXVolumeSlider.value);
+        VFXSliderValue = VFXVolumeSlider.value;
+        Debug.Log(VFXSliderValue);
     }
 
     private void Update()
-    {
-        SetMusicVolume(musicVolumeSlider.value, maxVolume);
-        SetSFXVolume(VFXVolumeSlider.value, maxVolume);
+    {       
+        SetMusicVolume(musicVolumeSlider.value, VFXVolumeSlider.value);
+        SetVFXVolume(VFXVolumeSlider.value, maxVolume);
     }
 
-    private void SetMusicVolume(float value, float maxVolume)
+    private void SetMusicVolume(float musicValue, float VFXValue)
     {
-        float volume = Mathf.Log(Mathf.Clamp(value, 0.0001f, 1f)) * (maxVolume - zeroVolume) / 4f + maxVolume;
+        float volume = Mathf.Log(Mathf.Clamp(musicValue, 0.0001f, 1f)) * (maxVolume - zeroVolume) / 4f + maxVolume;
         mainMixer.SetFloat("MusicVolume", volume);
     }
-    private void SetSFXVolume(float value, float maxVolume)
+    private void SetVFXVolume(float value, float maxVolume)
     {
         float volume = Mathf.Log(Mathf.Clamp(value, 0.0001f, 1f)) * (maxVolume - zeroVolume) / 4f + maxVolume;
         mainMixer.SetFloat("VFXVolume", volume);
@@ -68,14 +70,21 @@ public class SoundPlayer : MonoBehaviour
 
     public void AddDistortion()
     {
-        Debug.Log("AddDistortion");
-        mainMixer.SetFloat("MusicDistortion", 0.75f);
+        //Debug.Log("AddDistortion");
+        mainMixer.SetFloat("Level(MusicDistortion)", 0.75f);
+        //Debug.Log("MusicDist");
         StartCoroutine(Delay());
-        mainMixer.SetFloat("MusicDistortion", 0f);
+        mainMixer.SetFloat("Level(MusicDistortion)", 0f);
+        //Debug.Log("MusicDist");
+    }
+
+    public void SetValueAfterLoss(float value)
+    {
+        mainMixer.SetFloat("MasterVolume", value);
     }
 
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(10f);
     }
 }

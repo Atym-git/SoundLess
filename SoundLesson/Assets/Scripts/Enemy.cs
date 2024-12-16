@@ -22,10 +22,14 @@ public class Enemy : MonoBehaviour
 
     private void AiMove()
     {
-        if (!pause.isGamePaused)
-        {
-            enemyRb2D.velocity = new Vector2(_aiMovementSpeed, 0);
-        }
+       if (!pause.isGamePaused)
+       {
+           enemyRb2D.velocity = new Vector2(_aiMovementSpeed, 0);
+       }
+       if (!playerHealth.isPlayerAlive)
+       {
+            Destroy(gameObject);
+       }
     }
 
     private void Direction()
