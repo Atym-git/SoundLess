@@ -16,34 +16,61 @@ public class SoundPlayer : MonoBehaviour
 
     private void Start()
     {
-        musicVolumeSlider.onValueChanged.AddListener(delegate { GetMusicSliderValue(); });
-        VFXVolumeSlider.onValueChanged.AddListener(delegate { GetVFXSliderValue(); });
+        //musicVolumeSlider.onValueChanged.AddListener(delegate { SetSlidersValue(); });
+        //VFXVolumeSlider.onValueChanged.AddListener(delegate { SetSlidersValue(); });
+
+
 
         //slider.onValueChanged.AddListener(delegate { sliderCallBack(slider.value); });
 
         //GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("musicVolume");
     }
 
-
     public void SetSlidersValue()
     {
-        PlayerPrefs.SetFloat("MusicVolume", musicSliderValue);
-        PlayerPrefs.SetFloat("VFXVolume", VFXSliderValue);
-        Debug.Log(musicVolumeSlider.value);
-        Debug.Log(VFXVolumeSlider.value);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
+        Debug.Log("сохранили " + musicVolumeSlider.value.ToString());
+
+
+
+
+
+
+
+
+
+
+        //PlayerPrefs.SetFloat("VFXVolume", VFXSliderValue);
+
+        //musicVolumeSlider.value = musicSliderValue;
+        //VFXVolumeSlider.value = VFXSliderValue;
+        //Debug.Log(VFXSliderValue);
     }
 
-    private void GetMusicSliderValue()
+    public void GetMusicSliderValue()
     {
-        //musicSliderValue = PlayerPrefs.GetFloat("MusicVolume", musicVolumeSlider.value);
-        musicSliderValue = musicVolumeSlider.value;
-        Debug.Log(musicSliderValue);
+
+
+
+        //musicVolumeSlider.value = PlayerPrefs.GetFloat( "MusicVolume",  musicVolumeSlider.value);
+        float t = PlayerPrefs.GetFloat("MusicVolume", 1);
+        Debug.Log("Прочитали " + t.ToString());
+
+        musicVolumeSlider.value = t;
+
+
+
+        //VFXSliderValue = PlayerPrefs.GetFloat("VFXVolume", VFXVolumeSlider.value);
+
+        //musicSliderValue = musicVolumeSlider.value;
+        //VFXSliderValue = VFXVolumeSlider.value;
+        //Debug.Log(musicSliderValue);
     }
     private void GetVFXSliderValue()
     {
         //VFXSliderValue = PlayerPrefs.GetFloat("VFXVolume", VFXVolumeSlider.value);
         VFXSliderValue = VFXVolumeSlider.value;
-        Debug.Log(VFXSliderValue);
+        //Debug.Log(VFXSliderValue);
     }
 
     private void Update()

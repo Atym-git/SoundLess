@@ -27,7 +27,9 @@ public class Pause : MonoBehaviour
     {
         isGamePaused = true;
         pauseBackGround.gameObject.SetActive(true);
+
         floorSr.enabled = false;
+
         foreach (var Sr in EnemySr)
         {
             if (EnemySr[massiveNum] != null)
@@ -37,11 +39,14 @@ public class Pause : MonoBehaviour
             }
         }
         massiveNum = 0;
+        soundPlayer.GetMusicSliderValue();
     }
     private void UnPauseGame()
     {
         isGamePaused = false;
         pauseBackGround.gameObject.SetActive(false);
+
+
         floorSr.enabled = true;
         foreach (var Sr in EnemySr)
         {
@@ -52,6 +57,6 @@ public class Pause : MonoBehaviour
             }
         }
         massiveNum = 0;
-        //soundPlayer.GetSlidersValue();
+        soundPlayer.SetSlidersValue();
     }
 }

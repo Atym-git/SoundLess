@@ -25,9 +25,11 @@ public class GameLost : MonoBehaviour
 
     private void RestartGame()
     {
-        playerHealth.isPlayerAlive = true;
         SceneManager.LoadScene(0);
+        playerHealth.isPlayerAlive = true;
         soundPlayer.SetValueAfterLoss(-20);
-        soundPlayer.SetSlidersValue();
+        //soundPlayer.SetSlidersValue();
+        soundPlayer.GetMusicSliderValue();
+        Debug.Log("Restart");
     }
 }
