@@ -27,7 +27,6 @@ public class PlayerHealth : MonoBehaviour
             Destroy(gameObject);
             soundPlayer.SetValueAfterLoss(-80);
             gameLost.ShowCanvas();
-            //SceneManager.LoadScene(1);
         }
     }
 }

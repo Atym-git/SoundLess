@@ -28,8 +28,6 @@ public class GameLost : MonoBehaviour
         SceneManager.LoadScene(0);
         playerHealth.isPlayerAlive = true;
         soundPlayer.SetValueAfterLoss(-20);
-        //soundPlayer.SetSlidersValue();
         soundPlayer.GetMusicSliderValue();
-        Debug.Log("Restart");
     }
 }

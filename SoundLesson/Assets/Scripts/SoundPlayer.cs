@@ -14,63 +14,16 @@ public class SoundPlayer : MonoBehaviour
     private float VFXSliderValue;
     [SerializeField] private AudioSource clashSource;
 
-    private void Start()
-    {
-        //musicVolumeSlider.onValueChanged.AddListener(delegate { SetSlidersValue(); });
-        //VFXVolumeSlider.onValueChanged.AddListener(delegate { SetSlidersValue(); });
-
-
-
-        //slider.onValueChanged.AddListener(delegate { sliderCallBack(slider.value); });
-
-        //GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("musicVolume");
-    }
-
     public void SetSlidersValue()
     {
         PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
-        Debug.Log("сохранили " + musicVolumeSlider.value.ToString());
-
-
-
-
-
-
-
-
-
-
-        //PlayerPrefs.SetFloat("VFXVolume", VFXSliderValue);
-
-        //musicVolumeSlider.value = musicSliderValue;
-        //VFXVolumeSlider.value = VFXSliderValue;
-        //Debug.Log(VFXSliderValue);
     }
 
     public void GetMusicSliderValue()
     {
-
-
-
-        //musicVolumeSlider.value = PlayerPrefs.GetFloat( "MusicVolume",  musicVolumeSlider.value);
         float t = PlayerPrefs.GetFloat("MusicVolume", 1);
-        Debug.Log("Прочитали " + t.ToString());
 
         musicVolumeSlider.value = t;
-
-
-
-        //VFXSliderValue = PlayerPrefs.GetFloat("VFXVolume", VFXVolumeSlider.value);
-
-        //musicSliderValue = musicVolumeSlider.value;
-        //VFXSliderValue = VFXVolumeSlider.value;
-        //Debug.Log(musicSliderValue);
-    }
-    private void GetVFXSliderValue()
-    {
-        //VFXSliderValue = PlayerPrefs.GetFloat("VFXVolume", VFXVolumeSlider.value);
-        VFXSliderValue = VFXVolumeSlider.value;
-        //Debug.Log(VFXSliderValue);
     }
 
     private void Update()
@@ -97,12 +50,9 @@ public class SoundPlayer : MonoBehaviour
 
     public void AddDistortion()
     {
-        //Debug.Log("AddDistortion");
         mainMixer.SetFloat("Level(MusicDistortion)", 0.75f);
-        //Debug.Log("MusicDist");
         StartCoroutine(Delay());
         mainMixer.SetFloat("Level(MusicDistortion)", 0f);
-        //Debug.Log("MusicDist");
     }
 
     public void SetValueAfterLoss(float value)
